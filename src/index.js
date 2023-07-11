@@ -3,11 +3,22 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import HeaderTemp from './elements/HeaderTemp';
+import SiderTemp from './elements/SiderTemp';
+import Layout, { Content } from 'antd/es/layout/layout';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <Layout>
+    <HeaderTemp></HeaderTemp>
+    <Layout hasSider>
+      <SiderTemp></SiderTemp>
+      <Content>
+        <App></App>
+      </Content>
+    </Layout>
+    </Layout>
   </React.StrictMode>
 );
 
