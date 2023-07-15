@@ -1,6 +1,5 @@
 import { Layout } from 'antd';
 import  { Menu } from 'antd';
-import MenuItem from 'antd/es/menu/MenuItem';
 import SubMenu from 'antd/es/menu/SubMenu';
 
 const { Sider } = Layout;
@@ -20,13 +19,6 @@ function getItem(label, key, icon, children, type) {
     type,
   };
 }
-
-const items = [
-  getItem('Menu', '1', null, [
-    getItem('Find Homes', '1'),
-    getItem('My Liked Homes', '2'),
-  ])
-];
 
 function handleSelect(key) {
   if (key === 'sub1') {
