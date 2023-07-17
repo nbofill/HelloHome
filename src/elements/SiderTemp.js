@@ -1,6 +1,8 @@
 import { Layout } from 'antd';
 import  { Menu } from 'antd';
 import SubMenu from 'antd/es/menu/SubMenu';
+import React from 'react';
+import {Link} from "react-router-dom"
 
 const { Sider } = Layout;
 
@@ -20,21 +22,13 @@ function getItem(label, key, icon, children, type) {
   };
 }
 
-function handleSelect(key) {
-  if (key === 'sub1') {
-    
-  } else {
-
-  }
-}
-
 function SiderTemp() {
     return (
         <Sider style={siderStyle}>
-            <Menu mode='inline' theme='dark' onClick={({key}) => handleSelect(key)}>
+            <Menu mode='inline' theme='dark'>
               <SubMenu key='sub' title='Menu'>
-                <Menu.Item key='sub-1'>Find Homes</Menu.Item>
-                <Menu.Item key='sub-2'>My Saved Homes</Menu.Item>
+                <Menu.Item key='sub-1'><Link to="/">Find Homes</Link></Menu.Item>
+                <Menu.Item key='sub-2'><Link to="/saved">My Saved Homes</Link></Menu.Item>
               </SubMenu>
             </Menu>
         </Sider>

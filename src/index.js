@@ -3,24 +3,34 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter } from 'react-router-dom';
+import { Content } from 'antd/es/layout/layout';
+import Layout from 'antd/es/layout/layout';
 import HeaderTemp from './elements/HeaderTemp';
 import SiderTemp from './elements/SiderTemp';
-import Layout, { Content } from 'antd/es/layout/layout';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  <BrowserRouter>
+    <React.StrictMode>
     <Layout>
-    <HeaderTemp></HeaderTemp>
-    <Layout hasSider>
-      <SiderTemp></SiderTemp>
-      <Content>
+      <HeaderTemp></HeaderTemp>
+      <Layout hasSider>
+        <SiderTemp></SiderTemp>
+        <Content>
         <App></App>
-      </Content>
+        </Content>
+      </Layout>
     </Layout>
-    </Layout>
-  </React.StrictMode>
+    </React.StrictMode>
+  </BrowserRouter>
 );
+
+/* 
+
+
+
+*/
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
