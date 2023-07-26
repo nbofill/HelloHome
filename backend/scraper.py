@@ -2,10 +2,20 @@ from bs4 import BeautifulSoup
 import re
 import requests
 
-city = "baltimore"
-state="md"
+class House:
+    def __init__(self, address, images, beds, bath, sqft, price):
+        self.address = address
+        self.images = images
+        self.beds = beds
+        self.bath = bath
+        self.sqft = sqft
+        self.price = price
 
-url = 'https://www.zillow.com/homes/' + city + ',-'+ state + '_rb/'
+
+city = "baltimore"
+state= "md"
+
+url = 'https://www.zillow.com/homes/' + city + ',-'+ state + '/'
 
 
 req_headers = {
@@ -26,4 +36,41 @@ houses = []
 
 
 #print(soup.find_all('script', type='application/ld+json'))
-print(soup.find_all('address'))
+info = (soup.find_all('a', href=True, attrs={"data-test": "property-card-link"}))
+
+(info[0]["href"])
+
+links = []
+for item in info:
+   links.append(item["href"])
+
+Houses = []
+
+for link in links:
+    url = link
+
+    with requests.Session() as s:
+        response = s.get(url, headers=req_headers)
+
+    soup = BeautifulSoup(response.text, 'html.parser')
+    title = soup.title.text
+    address = title.split('|')[0].strip() 
+
+    images = (soup.find_all('img', attrs={"alt": ""}))
+    if len(images) > 2:
+        images = []
+
+    fields = soup.find_all('strong')
+    beds = fields[0].text
+    baths = fields[1].text
+    sqft = fields[2].text
+
+    price = soup.find('span', attrs={'data-testid': 'price'}).text
+    print(price)
+
+    house = House(address, images, beds, baths, sqft, price)
+
+
+
+
+
