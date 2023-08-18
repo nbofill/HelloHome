@@ -69,8 +69,3 @@ for link in links:
     print(price)
 
     house = House(address, images, beds, baths, sqft, price)
-
-
-
-
-
